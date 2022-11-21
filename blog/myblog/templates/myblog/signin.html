@@ -1,0 +1,31 @@
+{% extends './base.html' %}
+{% load static %}
+{% block title %}Sign in{% endblock %}
+
+{% block content %}
+<div class="col-md-4 mb-3 mx-auto">
+    {% if form.errors %}
+    {% for field in form %}
+    {% for error in field.errors %}
+    <div class="alert alert-danger">
+        <strong>{{ error|escape }}</strong>
+    </div>
+    {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+    <div class="alert alert-danger">
+        <strong>{{ error|escape }}</strong>
+    </div>
+    {% endfor %}
+    {% endif %}
+    <form class="form-signin" method="post" action="{% url 'signin' %}">
+        {% csrf_token %}
+        <h1 class="h3 mb-3 mt-3 font-weight-normal">Please enter user name and password</h1>
+        <label for="inputUsername" class="sr-only">User name</label>
+        {{ form.username }}
+        <label for="inputPassword" class="sr-only">Password</label>
+        {{ form.password }}
+        <button class="btn mt-2 btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+</div>
+{% endblock %}

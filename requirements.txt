@@ -1,3 +1,4 @@
 django
 python-dotenv
-taggit
+django-ckeditor
+django-taggit
